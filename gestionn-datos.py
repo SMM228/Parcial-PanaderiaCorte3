@@ -41,4 +41,6 @@ def agregar_jornada(laborista, items_hechos):
     detalle_jornada = {}
     denominador_efic = 0
     numerador_efic = 0
+    
+
 
