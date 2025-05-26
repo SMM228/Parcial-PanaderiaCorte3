@@ -25,3 +25,20 @@ def resumen_objetivos():
     logrados = sum(1 for j in registro_fabricacion if j["estado"] == "Logrado")
     no_logrados = len(registro_fabricacion) - logrados
     return {"Logrado": logrados, "No logrado": no_logrados}
+
+def agregar_jornada(laborista, items_hechos):
+    """
+    Registra una nueva jornada de fabricación de un empleado.
+
+    Argumentos:
+        laborista (str): Nombre del empleado.
+        items_hechos (dict): Cantidad de cada producto realizado. Ej:
+                             {"french_loaf": 80, "cheese_bread": 120, "crescent": 60}
+    Retorna:
+        dict: Registro completo de la jornada, con indicadores calculados.
+        None: Si alguna cantidad fuera de rango.
+    """
+    detalle_jornada = {}
+    denominador_efic = 0
+    numerador_efic = 0
+
