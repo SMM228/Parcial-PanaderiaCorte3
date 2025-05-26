@@ -41,49 +41,4 @@ def agregar_jornada(laborista, items_hechos):
     detalle_jornada = {}
     denominador_efic = 0
     numerador_efic = 0
-
-    for prod_id, valor in items_hechos.items():
-        factor = round(random.uniform(1.0, 1.5), 2)
-        if valor < 0 or valor > 500:
-            print(f"Cantidad inválida para {PRODUCT_CATALOG.get(prod_id, prod_id)}. Debe estar entre 0 y 500.")
-            return None
-        detalle_jornada[prod_id] = {
-            "factor": factor,
-            "unidades": valor
-        }
-        denominador_efic += factor
-        numerador_efic += valor * factor
-
     
-    if denominador_efic == 0:
-        indice_efic = 0
-    else:
-        indice_efic = numerador_efic / denominador_efic
-    rendimiento = round(indice_efic)
-
-    estado_objetivo = "Logrado" if rendimiento >= 300 else "No logrado"
-
-    jornada = {
-        "detalle": detalle_jornada,
-        "trabajador": laborista,
-        "rendimiento": rendimiento,
-        "estado": estado_objetivo
-    }
-    registro_fabricacion.append(jornada)
-    return jornada
-
-    
-
-def resumen_general():
-    """
-    Genera un panorama general de jornadas registradas.
-    """
-    
-    return [
-        {
-            "rendimiento": j["rendimiento"],
-            "trabajador": j["trabajador"],
-            "estado": j["estado"]
-        }
-        for j in registro_fabricacion
-    ]
